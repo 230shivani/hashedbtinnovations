@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Webpage Layout</title>
+  <style>
+    :root{
+      --accent:#2563eb;
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --gap:16px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111}
+
+    .page{
+      max-width:1100px;
+      margin:24px auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.9));
+      border-radius:10px;
+      box-shadow:0 6px 20px rgba(2,6,23,0.08);
+      overflow:hidden;
+    }
+
+    
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 20px;
+      background:var(--card);
+      gap:var(--gap);
+    }
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{width:48px;height:48px;border-radius:8px;object-fit:cover;transition:transform 0.3s}
+    .logo img:hover{transform:rotate(10deg) scale(1.1)}
+    .brand{font-weight:700;font-size:18px}
+    .social{display:flex;gap:10px;align-items:center}
+    .social a{text-decoration:none;color:var(--muted);font-size:14px;transition:color 0.3s}
+    .social a:hover{color:var(--accent)}
+
+    nav.menubar{
+      display:flex;justify-content:center;background:var(--accent);padding:8px 12px
+    }
+    nav.menubar ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+    nav.menubar a{color:white;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;transition:background 0.3s}
+    nav.menubar a:hover{background:rgba(255,255,255,0.2)}
+
+    
+    .layout{display:grid;grid-template-columns:260px 1fr;gap:20px;padding:20px}
+
+    
+    aside.sidebar{background:var(--card);padding:16px;border-radius:8px;transition:transform 0.3s}
+    aside.sidebar:hover{transform:translateY(-4px)}
+    aside h3{margin:0 0 12px 0;font-size:16px}
+    .meta{font-size:14px;color:var(--muted);line-height:1.5}
+
+    
+    main{min-height:260px}
+    .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--card);padding:14px;border-radius:8px;box-shadow:0 2px 8px rgba(2,6,23,0.04);display:flex;flex-direction:column;gap:10px;transition:transform 0.3s, box-shadow 0.3s;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(2,6,23,0.15)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:6px}
+    .card h4{margin:0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+
+    footer{background:var(--card);padding:12px 20px;text-align:center;color:var(--muted);font-size:14px}
+
+    
+    @media (max-width:900px){
+      .layout{grid-template-columns:1fr;}
+      .grid-cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      nav.menubar ul{gap:8px}
+      .grid-cards{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:stretch}
+      .social{justify-content:flex-end}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="https://picsum.photos/80" alt="Site logo">
+        <div>
+          <div class="brand">My Website</div>
+          <div style="font-size:12px;color:var(--muted)">Web Developer</div>
+        </div>
+      </div>
+      <div class="social" aria-label="social links">
+        <a href="#" title="Twitter">Twitter</a>
+        <a href="#" title="LinkedIn">LinkedIn</a>
+        <a href="#" title="Instagram">Instagram</a>
+      </div>
+    </header>
+
+    
+    <nav class="menubar" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    
+    <div class="layout">
+
+      
+      <aside class="sidebar" aria-label="Sidebar with custom data">
+        <h3>Custom Data</h3>
+        <div class="meta">
+          <p><strong>Owner:</strong> Shivani Choudhary</p>
+          <p><strong>Location:</strong> India</p>
+          <p><strong>Since:</strong> 2025</p>
+          <p>Passionate about creating impactful web experiences.</p>
+        </div>
+      </aside>
+
+      
+      <main>
+        <section class="grid-cards" aria-label="Three content boxes">
+
+          <article class="card" onclick="alert('You clicked Box One!')">
+            <img src="https://picsum.photos/seed/a/600/400" alt="Sample image 1">
+            <h4>Web Development</h4>
+            <p>Building responsive and modern websites using HTML, CSS, and JavaScript to deliver seamless user experiences</p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Box Two!')">
+            <img src="https://picsum.photos/seed/b/600/400" alt="Sample image 2">
+            <h4>UI/UX Design</h4>
+            <p>Creating user-friendly interfaces and engaging experiences through thoughtful design and usability principles.</p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Box Three!')">
+            <img src="https://picsum.photos/seed/c/600/400" alt="Sample image 3">
+            <h4>Content Creation</h4>
+            <p>Crafting engaging content and storytelling through various digital mediums.</p>
+          </article>
+
+        </section>
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      Sample footer text — © <span id="year"></span> My Website. All rights reserved.
+    </footer>
+
+  </div>
+
+  <script>
+    // set current year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
